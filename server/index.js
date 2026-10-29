@@ -12,8 +12,9 @@ try {
 }
 
 const PORT = Number(process.env.PORT) || 3000;
-// 내 컴퓨터에서는 127.0.0.1에만 연다. 클라우드(NODE_ENV=production)에서는 기본으로 0.0.0.0에 연다.
-const HOST = process.env.HOST || (IS_PROD ? '0.0.0.0' : '127.0.0.1');
+// 내 컴퓨터에서는 127.0.0.1에만 연다. 클라우드에서는 0.0.0.0에 연다.
+// Render는 RENDER 환경변수를 자동으로 넣어 주므로, 그때는 HOST 설정과 상관없이 0.0.0.0을 쓴다.
+const HOST = process.env.RENDER ? '0.0.0.0' : process.env.HOST || (IS_PROD ? '0.0.0.0' : '127.0.0.1');
 const REPEAT_RULES = ['none', 'daily', 'weekly', 'monthly'];
 const COLOR_RE = /^#[0-9a-fA-F]{6}$/;
 
