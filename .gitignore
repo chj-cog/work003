@@ -1,0 +1,10 @@
+# 의존성
+node_modules/
+
+# 비밀값
+.env
+
+# 로컬 데이터베이스 (WAL 모드 보조 파일 포함)
+todo.db
+todo.db-wal
+todo.db-shm

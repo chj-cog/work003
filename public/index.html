@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>할 일</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header class="top">
+      <h1>할 일</h1>
+      <div id="account" class="account" hidden>
+        <span id="user-email" class="muted-text"></span>
+        <button id="logout" type="button" class="plain">로그아웃</button>
+      </div>
+    </header>
+
+    <section id="auth-view" hidden>
+      <form id="auth-form" class="card" novalidate>
+        <h2 id="auth-title">로그인</h2>
+        <label class="field">이메일
+          <input id="auth-email" type="email" autocomplete="email" required>
+        </label>
+        <label class="field">비밀번호
+          <input id="auth-password" type="password" autocomplete="current-password" minlength="8" required>
+        </label>
+        <div class="row">
+          <button id="auth-submit" type="submit">로그인</button>
+          <button id="auth-switch" type="button" class="plain">처음이세요? 회원가입</button>
+        </div>
+        <p id="auth-error" class="error" role="alert"></p>
+        <p id="auth-info" class="info" role="status"></p>
+      </form>
+    </section>
+
+    <div id="app-view" hidden>
+    <form id="add-form" class="card" autocomplete="off" novalidate>
+      <input id="title" type="text" placeholder="할 일을 입력하세요" maxlength="200" required>
+      <div class="row">
+        <label>마감일 (필수) <input id="due" type="date" required aria-describedby="form-error"></label>
+        <label>반복
+          <select id="repeat">
+            <option value="none">없음</option>
+            <option value="daily">매일</option>
+            <option value="weekly">매주</option>
+            <option value="monthly">매월</option>
+          </select>
+        </label>
+        <button type="submit">추가</button>
+      </div>
+      <div id="form-tags" class="tag-picks" aria-label="태그 선택"></div>
+      <p id="form-error" class="error" role="alert"></p>
+    </form>
+
+    <section class="card">
+      <input id="search" type="search" placeholder="제목으로 검색">
+      <div id="tag-filter" class="tag-filter" aria-label="태그로 거르기"></div>
+      <details>
+        <summary>태그 관리</summary>
+        <form id="tag-form" class="row" autocomplete="off">
+          <input id="tag-name" type="text" placeholder="새 태그 이름" maxlength="30" required>
+          <input id="tag-color" type="color" value="#378add" aria-label="태그 색">
+          <button type="submit">태그 추가</button>
+        </form>
+        <p id="tag-error" class="error" role="alert"></p>
+      </details>
+    </section>
+
+    <p id="list-error" class="error" role="alert"></p>
+    <ul id="list"></ul>
+    <p id="empty" class="muted" hidden>할 일이 없습니다.</p>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
