@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "todo-files": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem@1.0.0",
+        "C:/Users/coghd/todo"
+      ]
+    }
+  }
+}

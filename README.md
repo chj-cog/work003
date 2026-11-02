@@ -42,6 +42,26 @@ npm start
 | `HOST` | | 접속 주소 (기본 `127.0.0.1`, 클라우드에서는 `0.0.0.0`) |
 | `NODE_ENV` | | 클라우드에서는 `production` (로그인 쿠키를 HTTPS 전용으로) |
 
+## 터미널에서 쓰기 (todo 명령)
+
+앱과 같은 Supabase 데이터를 터미널에서 다룹니다. DB 코드는 앱의 [server/db.js](server/db.js)를 그대로 씁니다.
+시험용 계정으로 로그인하므로 RLS가 그대로 적용되어 그 계정의 할 일만 보입니다.
+
+`.env`에 `TODO_CLI_EMAIL`, `TODO_CLI_PASSWORD`(앱에서 회원가입한 시험용 계정)를 채운 뒤:
+
+```bash
+npm run todo -- add "보고서 쓰기" --due today --repeat weekly
+npm run todo -- list
+npm run todo -- list 보고서
+npm run todo -- done 12
+npm run todo -- summary
+```
+
+- `add`: 마감일(`--due`)은 필수입니다. `YYYY-MM-DD`, `today`, `tomorrow`를 쓸 수 있습니다.
+- `done`: 반복 할 일이면 앱과 똑같이 다음 할 일이 생깁니다.
+- `summary`: 오늘(내 컴퓨터 시간대 기준) 완료한 할 일과 남은 할 일 수를 보여 줍니다.
+- `npm link`를 한 번 실행하면 어느 폴더에서나 `todo list`처럼 쓸 수 있습니다.
+
 ## RLS 점검
 
 앱에서 시험용 계정 두 개를 회원가입하고, `.env`의 `RLS_TEST_A_EMAIL`·`RLS_TEST_A_PASSWORD`·`RLS_TEST_B_EMAIL`·`RLS_TEST_B_PASSWORD`를 채운 뒤:
@@ -64,6 +84,8 @@ public/
   index.html, app.js, style.css   화면. /api/... 에만 요청 (Supabase를 모름)
 supabase/
   schema.sql   표, RLS 정책, DB 함수
+bin/
+  todo.js      터미널용 todo 명령 (server/db.js 재사용)
 scripts/
   check-rls.js RLS 점검
 ```

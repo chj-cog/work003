@@ -4,8 +4,12 @@
   "private": true,
   "description": "로그인해서 쓰는 Todo 앱 (Express + Supabase)",
   "main": "server/index.js",
+  "bin": {
+    "todo": "bin/todo.js"
+  },
   "scripts": {
     "start": "node --env-file-if-exists=.env server/index.js",
+    "todo": "node bin/todo.js",
     "check:rls": "node --env-file=.env scripts/check-rls.js"
   },
   "engines": {
